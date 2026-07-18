@@ -1,0 +1,164 @@
+/* Abenteuerfilm — refreshed design */
+:root {
+  --bg: #0b0c10;
+  --bg-soft: #14161d;
+  --text: #eef0f6;
+  --text-dim: #b7bdd0;
+  --accent: #8fa3d8;
+  --accent-strong: #a9bcf0;
+  --line: rgba(255, 255, 255, 0.1);
+  --maxw: 1160px;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: "Poppins", "Segoe UI", system-ui, -apple-system, sans-serif;
+  font-weight: 300;
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+}
+
+img { max-width: 100%; display: block; }
+
+a { color: var(--accent-strong); text-decoration: none; }
+a:hover { color: #fff; }
+
+.wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 24px; }
+
+/* Header */
+header {
+  position: fixed; inset: 0 0 auto 0; z-index: 50;
+  background: linear-gradient(rgba(11,12,16,.92), rgba(11,12,16,.75) 70%, transparent);
+  backdrop-filter: blur(6px);
+}
+.nav {
+  max-width: var(--maxw); margin: 0 auto; padding: 18px 24px;
+  display: flex; align-items: center; justify-content: space-between; gap: 16px;
+}
+.brand {
+  font-weight: 600; letter-spacing: .02em; color: var(--text); font-size: 1.05rem;
+}
+.brand:hover { color: var(--accent-strong); }
+nav ul { display: flex; gap: 28px; list-style: none; }
+nav a {
+  color: var(--text); font-size: .95rem; padding-bottom: 4px;
+  border-bottom: 2px solid transparent; transition: border-color .2s, color .2s;
+}
+nav a:hover { color: var(--accent-strong); }
+nav a.active { border-color: var(--accent); }
+
+/* Hero */
+.hero {
+  min-height: 86vh; display: grid; place-items: center; position: relative;
+  background-size: cover; background-position: center;
+}
+.hero::after {
+  content: ""; position: absolute; inset: 0;
+  background: linear-gradient(rgba(11,12,16,.35), rgba(11,12,16,.55) 75%, var(--bg));
+}
+.hero > .wrap { position: relative; z-index: 1; text-align: center; }
+.hero h1 {
+  font-size: clamp(3rem, 9vw, 6.5rem); font-weight: 700; letter-spacing: .01em;
+  color: var(--accent-strong); text-shadow: 0 2px 30px rgba(0,0,0,.45);
+}
+.hero p.tagline { color: var(--text-dim); font-size: 1.1rem; margin-top: 8px; }
+
+.hero-page { min-height: 48vh; }
+.hero-page h1 { font-size: clamp(2.4rem, 6vw, 4rem); }
+
+/* Sections */
+section { padding: 88px 0; }
+.section-dark { background: var(--bg); }
+.section-soft { background: var(--bg-soft); }
+
+h2 {
+  font-size: clamp(1.9rem, 4.5vw, 2.8rem); font-weight: 700;
+  color: var(--accent); margin-bottom: 28px; letter-spacing: .02em;
+}
+h3 { font-weight: 600; font-size: 1.25rem; }
+
+.lead { max-width: 720px; font-size: 1.12rem; color: var(--text); }
+.dim { color: var(--text-dim); }
+
+/* News card */
+.news-card {
+  display: grid; grid-template-columns: 1.1fr .9fr; gap: 0; overflow: hidden;
+  border-radius: 14px; border: 1px solid var(--line); background: var(--bg-soft);
+}
+.news-card .txt { padding: 44px; display: flex; flex-direction: column; justify-content: center; gap: 18px; }
+.news-card .img { min-height: 320px; background-size: cover; background-position: center; }
+.badge {
+  display: inline-block; width: fit-content; font-size: .78rem; letter-spacing: .18em;
+  text-transform: uppercase; color: var(--accent-strong);
+  border: 1px solid var(--accent); border-radius: 999px; padding: 4px 14px;
+}
+
+/* Buttons */
+.btn {
+  display: inline-block; width: fit-content; background: var(--accent); color: #0b0c10;
+  padding: 12px 26px; border-radius: 8px; font-weight: 500; transition: background .2s, transform .15s;
+}
+.btn:hover { background: var(--accent-strong); color: #0b0c10; transform: translateY(-1px); }
+.btn.ghost { background: transparent; color: var(--text); border: 1px solid var(--line); }
+.btn.ghost:hover { border-color: var(--accent); color: var(--accent-strong); }
+
+/* Cards / grids */
+.grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; }
+
+.card {
+  border-radius: 14px; overflow: hidden; border: 1px solid var(--line); background: var(--bg-soft);
+  transition: transform .2s, border-color .2s;
+}
+.card:hover { transform: translateY(-4px); border-color: var(--accent); }
+.card .photo { aspect-ratio: 4 / 3; background-size: cover; background-position: center; }
+.card .info { padding: 24px 26px 28px; }
+.card .info p { color: var(--text-dim); margin-top: 4px; }
+
+/* Project blocks */
+.project {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center; padding: 64px 0;
+  border-top: 1px solid var(--line);
+}
+.project:first-of-type { border-top: 0; }
+.project h3 { font-size: clamp(1.8rem, 4vw, 2.6rem); font-weight: 700; color: var(--accent); }
+.project .meta { display: flex; flex-direction: column; gap: 10px; color: var(--text-dim); }
+.project .meta .kind { font-style: italic; color: var(--text); }
+.project-still { border-radius: 14px; overflow: hidden; border: 1px solid var(--line); }
+
+/* Legal pages */
+.legal { max-width: 820px; }
+.legal h2 { font-size: 1.5rem; margin: 40px 0 12px; }
+.legal h2:first-child { margin-top: 0; }
+.legal p, .legal address { color: var(--text-dim); margin-bottom: 14px; font-style: normal; }
+.legal strong { color: var(--text); font-weight: 600; }
+
+/* Footer */
+footer { border-top: 1px solid var(--line); padding: 44px 0 56px; background: #08090c; }
+.foot {
+  max-width: var(--maxw); margin: 0 auto; padding: 0 24px;
+  display: flex; flex-wrap: wrap; gap: 12px 28px; align-items: center; justify-content: space-between;
+  color: var(--text-dim); font-size: .92rem;
+}
+.foot ul { display: flex; flex-wrap: wrap; gap: 20px; list-style: none; }
+.foot a { color: var(--text-dim); }
+.foot a:hover { color: var(--accent-strong); }
+
+/* Mobile nav */
+.nav-toggle { display: none; background: none; border: 0; color: var(--text); font-size: 1.6rem; cursor: pointer; }
+
+@media (max-width: 800px) {
+  .nav-toggle { display: block; }
+  nav { position: absolute; top: 100%; right: 0; left: 0; background: rgba(11,12,16,.97); display: none; }
+  nav.open { display: block; }
+  nav ul { flex-direction: column; gap: 0; padding: 12px 24px 20px; }
+  nav li { border-bottom: 1px solid var(--line); }
+  nav a { display: block; padding: 14px 0; border-bottom: 0; }
+  .news-card, .grid-2, .project { grid-template-columns: 1fr; }
+  .news-card .img { min-height: 240px; order: -1; }
+  section { padding: 64px 0; }
+}
